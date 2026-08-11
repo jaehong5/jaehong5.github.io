@@ -11,6 +11,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="Jae-hong Oh (오재홍)" />
+    <meta name="theme-color" content="#fff8e8" />
     <link rel="canonical" href="https://jaehongoh.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260502-2" />
     <link rel="icon" sizes="any" href="/favicon.ico?v=20260502-2" />
@@ -18,12 +19,14 @@
     <link rel="alternate" hreflang="en" href="https://jaehongoh.com/" />
     <link rel="alternate" hreflang="ko" href="https://jaehongoh.com/" />
     <link rel="alternate" hreflang="x-default" href="https://jaehongoh.com/" />
+    <link rel="preload" href="/assets/fonts/hack-bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/red-hat-text-latin.woff2" as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Jae-hong Oh" />
     <meta property="og:title" content="Jae-hong Oh (오재홍)" />
     <meta
       property="og:description"
-      content="A quiet personal homepage for system software, embedded Linux, camera ISP, and edge systems."
+      content="A personal index of system software, embedded Linux, camera ISP, and edge systems."
     />
     <meta property="og:url" content="https://jaehongoh.com/" />
     <meta property="og:image" content="https://jaehongoh.com/og-image.png" />
@@ -50,19 +53,60 @@
       }
     </script>
     <style>
+      @font-face {
+        font-family: "Hack Web";
+        src: url("/assets/fonts/hack-regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Hack Web";
+        src: url("/assets/fonts/hack-bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Red Hat Text Web";
+        src: url("/assets/fonts/red-hat-text-latin.woff2") format("woff2");
+        font-weight: 300 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Noto Sans KR Web";
+        src: url("/assets/fonts/noto-sans-kr-jaehong.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+        unicode-range: U+C624, U+C7AC, U+D64D;
+      }
+      @font-face {
+        font-family: "Newsreader Web";
+        src: url("/assets/fonts/newsreader-latin.woff2") format("woff2");
+        font-weight: 200 800;
+        font-style: normal;
+        font-display: swap;
+      }
       :root {
-        --bg: #ecead8;
-        --card: rgba(255, 255, 255, 0.5);
-        --fg: #1a1d16;
-        --muted: rgba(26, 29, 22, 0.55);
-        --rule: rgba(26, 29, 22, 0.22);
-        --accent: #3d6b1f;
-        --chip: rgba(61, 107, 31, 0.1);
-        --shadow: rgba(26, 29, 22, 0.08);
-        --mono: "JetBrains Mono", "SFMono-Regular", "Cascadia Code", "Liberation Mono", Menlo, Consolas, monospace;
-        color: var(--fg);
-        background: var(--bg);
-        font-family: var(--mono);
+        --paper: #fff8e8;
+        --white: #fffdf8;
+        --ink: #171717;
+        --muted: #666258;
+        --red: #ef5a47;
+        --yellow: #ffd447;
+        --blue: #4b83c3;
+        --pale-blue: #c9e0ef;
+        --rule: 2px solid var(--ink);
+        --card-border: 1px solid rgba(23, 23, 23, 0.72);
+        --card-shadow: 8px 8px 0 rgba(23, 23, 23, 0.08);
+        --card-hover-shadow: 12px 12px 0 rgba(239, 90, 71, 0.13);
+        --mono: "Hack Web", "Noto Sans KR Web", monospace;
+        --sans: "Red Hat Text Web", "Noto Sans KR Web", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: var(--sans);
         font-size: 16px;
         font-synthesis: none;
         line-height: 1.5;
@@ -70,127 +114,637 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
+
       * { box-sizing: border-box; }
-      html, body { min-width: 320px; min-height: 100%; margin: 0; background: var(--bg); }
-      a { color: var(--fg); outline: none; -webkit-tap-highlight-color: transparent; }
-      a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-      ::selection { background: var(--chip); color: var(--fg); }
-      .card-stage { display: flex; min-height: 100svh; align-items: center; justify-content: center; padding: 40px 24px; }
-      .index-card { width: min(760px, 100%); overflow: hidden; border: 1px solid var(--rule); border-radius: 7px; background: var(--card); box-shadow: 0 18px 80px var(--shadow); }
-      .card-chrome { display: flex; min-height: 38px; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--rule); color: var(--muted); font-size: 0.74rem; }
-      .traffic { display: flex; gap: 8px; }
-      .traffic span { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
-      .traffic span:first-child { background: #e06050; }
-      .traffic span:nth-child(2) { background: #e0b040; }
-      .card-chrome p { flex: 1; margin: 0 0 0 2px; }
-      .card-body { padding: 36px 40px 42px; }
-      .ascii-lockup { margin-bottom: 30px; }
-      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-      .wordmark { display: block; width: 100%; height: auto; }
-      .wordmark .cut { fill: #8b8580; }
-      .wordmark .name-fill { fill: var(--accent); }
-      .wordmark .surname-fill { fill: #4b4646; }
-      .ascii-lockup p { margin: 14px 0 0; color: var(--muted); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; }
-      .ascii-lockup strong { color: var(--accent); font-weight: 600; }
-      .profile-table { margin-bottom: 34px; }
-      .profile-row, .career-line { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 6px 0; font-size: 0.82rem; line-height: 1.55; }
-      .profile-row { margin: 0; }
-      .profile-row span, .career-line time, .contact-list span { color: var(--muted); }
-      .profile-row strong { color: var(--fg); font-weight: 500; }
-      .accent { color: var(--accent) !important; }
-      .log-section { margin-bottom: 32px; }
-      .log-section h2 { margin: 0 0 10px; color: var(--accent); font-size: 0.82rem; font-weight: 700; }
-      .career-log, .poem-details, blockquote, .contact-list { border-left: 2px solid var(--rule); padding-left: 18px; }
-      .career-log { display: flex; flex-direction: column; gap: 14px; }
-      .career-line { grid-template-columns: 170px 110px minmax(0, 1fr); align-items: baseline; padding: 4px 0; margin: 0; }
-      .career-line span { color: var(--accent); }
-      .career-line p, .career-line strong { margin: 0; color: var(--fg); font-weight: 400; }
-      .career-line p { color: var(--muted); }
-      .career-line p strong, .career-line.muted strong { color: var(--fg); }
-      .career-line.muted span, .career-line.muted strong { color: var(--muted); }
-      .poem-details { font-size: 0.82rem; line-height: 1.7; }
-      .poem-details summary { color: var(--fg); cursor: pointer; list-style: none; }
+      html { min-width: 320px; scroll-behavior: smooth; }
+      body { min-width: 320px; min-height: 100%; margin: 0; background: var(--paper); }
+      a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+      a:hover { text-decoration-style: wavy; }
+      a:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+      }
+      ::selection { color: var(--ink); background: var(--yellow); }
+
+      .skip-link {
+        position: fixed;
+        z-index: 20;
+        top: 12px;
+        left: 12px;
+        padding: 10px 14px;
+        border: var(--rule);
+        background: var(--yellow);
+        font-weight: 800;
+        transform: translateY(-160%);
+      }
+      .skip-link:focus { transform: translateY(0); }
+
+      .site-shell {
+        width: min(1240px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 72px) clamp(28px, 5vw, 64px);
+      }
+
+      .masthead {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 28px;
+        min-height: 92px;
+      }
+      .brand {
+        display: inline-flex;
+        min-width: 48px;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        border: var(--rule);
+        background: var(--red);
+        font-family: var(--mono);
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: -0.08em;
+        text-decoration: none;
+      }
+      .issue {
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+      .masthead nav { display: flex; gap: 20px; }
+      .masthead nav a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      .masthead nav a:hover { text-decoration: underline; }
+
+      main {
+        display: grid;
+        gap: clamp(28px, 4.5vw, 54px);
+        padding: clamp(18px, 3vw, 36px) 0 clamp(28px, 4vw, 52px);
+      }
+      .surface-card {
+        --card-accent: var(--red);
+        overflow: hidden;
+        border: var(--card-border);
+        border-left: 8px solid var(--card-accent);
+        background: rgba(248, 245, 239, 0.9);
+        box-shadow: var(--card-shadow);
+        transform: translate(0, 0);
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .surface-card:hover {
+        border-color: var(--ink);
+        border-left-color: var(--card-accent);
+        box-shadow: var(--card-hover-shadow);
+        transform: translate(-4px, -4px);
+      }
+      .surface-card:focus-within {
+        border-color: var(--ink);
+        border-left-color: var(--card-accent);
+        box-shadow: var(--card-hover-shadow);
+        transform: translate(-4px, -4px);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.65fr);
+      }
+      .hero-copy {
+        display: flex;
+        min-height: 600px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(44px, 7vw, 88px) clamp(24px, 5vw, 68px) clamp(42px, 6vw, 72px);
+      }
+      .eyebrow,
+      .section-label {
+        margin: 0;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+      .eyebrow { display: flex; align-items: center; gap: 10px; }
+      .eyebrow::before {
+        width: 12px;
+        height: 12px;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--blue);
+        content: "";
+      }
+      h1 {
+        margin: 52px 0 42px;
+        font-family: var(--mono);
+        font-size: clamp(4.8rem, 10vw, 8.4rem);
+        font-weight: 700;
+        letter-spacing: -0.08em;
+        line-height: 0.84;
+      }
+      h1 span,
+      h1 strong { display: block; }
+      h1 span { white-space: nowrap; }
+      h1 strong { color: var(--red); font-weight: inherit; }
+      .hero-intro {
+        max-width: 690px;
+        margin: 0;
+        font-family: var(--sans);
+        font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+        letter-spacing: -0.025em;
+        line-height: 1.18;
+      }
+
+      .hero-panel {
+        display: flex;
+        min-height: 600px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 24px;
+        border-left: var(--rule);
+        background: var(--yellow);
+      }
+      .shape-stage {
+        position: relative;
+        min-height: 250px;
+        overflow: hidden;
+        border: var(--rule);
+        background: var(--white);
+      }
+      .shape { position: absolute; display: block; border: var(--rule); }
+      .shape-circle {
+        top: 28px;
+        right: 28px;
+        width: 104px;
+        height: 104px;
+        border-radius: 50%;
+        background: var(--red);
+      }
+      .shape-arch {
+        bottom: -2px;
+        left: 30px;
+        width: 104px;
+        height: 156px;
+        border-radius: 54px 54px 0 0;
+        background: var(--blue);
+      }
+      .shape-square {
+        right: 50px;
+        bottom: 28px;
+        width: 70px;
+        height: 70px;
+        background: var(--yellow);
+        transform: rotate(8deg);
+      }
+      .panel-copy { padding-top: 32px; }
+      .panel-kicker {
+        margin: 0 0 10px;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .panel-role {
+        margin: 0;
+        font-family: var(--mono);
+        font-size: clamp(1.35rem, 2.5vw, 2rem);
+        font-weight: 700;
+        letter-spacing: -0.055em;
+        line-height: 1.08;
+      }
+      .quick-facts {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 7px 14px;
+        margin: 28px 0 0;
+        padding-top: 18px;
+        border-top: var(--rule);
+        font-family: var(--mono);
+        font-size: 0.72rem;
+      }
+      .quick-facts dt { font-weight: 700; text-transform: uppercase; }
+      .quick-facts dd { margin: 0; }
+
+      .profile-section,
+      .experience-section {
+        display: grid;
+        grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+        gap: clamp(38px, 7vw, 96px);
+        padding: clamp(64px, 9vw, 112px) clamp(28px, 6vw, 76px);
+      }
+      .section-heading h2 {
+        max-width: 520px;
+        margin: 18px 0 0;
+        font-family: var(--mono);
+        font-size: clamp(2.25rem, 4.8vw, 4.4rem);
+        font-weight: 700;
+        letter-spacing: -0.07em;
+        line-height: 0.98;
+      }
+      .section-label span {
+        display: inline-flex;
+        width: 32px;
+        height: 32px;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        border: var(--rule);
+        border-radius: 50%;
+        background: var(--yellow);
+        letter-spacing: 0;
+      }
+      .profile-copy { align-self: end; }
+      .profile-copy .lede {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: clamp(1.5rem, 3vw, 2.35rem);
+        line-height: 1.24;
+      }
+      .profile-copy .supporting {
+        max-width: 650px;
+        margin: 30px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .topic-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 34px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .topic-list li {
+        padding: 8px 12px;
+        border: var(--rule);
+        background: var(--white);
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .topic-list li:nth-child(3n + 1) { background: var(--pale-blue); }
+      .topic-list li:nth-child(3n + 2) { background: var(--yellow); }
+      .topic-list li:nth-child(3n + 3) { background: #ffd8ce; }
+
+      .experience-section { align-items: start; }
+      .career-wrap { min-width: 0; }
+      .career-list { border-top: var(--rule); }
+      .career-item {
+        display: grid;
+        grid-template-columns: 160px minmax(0, 1fr);
+        gap: 24px;
+        padding: 32px 0;
+        border-bottom: var(--rule);
+      }
+      .career-meta { display: flex; flex-direction: column; gap: 7px; }
+      .career-meta time {
+        color: var(--red);
+        font-family: var(--mono);
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      .career-meta span {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .career-item h3 {
+        margin: 0 0 10px;
+        font-family: var(--mono);
+        font-size: clamp(1.2rem, 2vw, 1.7rem);
+        font-weight: 700;
+        letter-spacing: -0.045em;
+        line-height: 1.14;
+      }
+      .career-item p { margin: 0; color: var(--muted); line-height: 1.68; }
+
+      .note-section {
+        display: grid;
+        grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
+        background: var(--red);
+      }
+      .note-heading,
+      .note-content { padding: clamp(42px, 7vw, 84px); }
+      .note-heading { display: flex; flex-direction: column; justify-content: space-between; }
+      .note-heading h2 {
+        margin: 28px 0 52px;
+        font-family: var(--mono);
+        font-size: clamp(2.8rem, 6vw, 5.5rem);
+        font-weight: 700;
+        letter-spacing: -0.08em;
+        line-height: 0.9;
+      }
+      .note-heading p:last-child {
+        max-width: 260px;
+        margin: 0;
+        font-size: 0.78rem;
+        font-weight: 800;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+      .note-content { border-left: var(--rule); background: var(--white); }
+      .poem-opening,
+      .poem-details blockquote p {
+        font-family: "Newsreader Web", serif;
+        font-optical-sizing: auto;
+      }
+      .poem-details summary { cursor: pointer; list-style: none; }
       .poem-details summary::-webkit-details-marker { display: none; }
-      .poem-details summary strong { display: inline-block; margin-top: 10px; color: var(--accent); font-weight: 700; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; white-space: nowrap; }
-      .poem-details summary strong::before { content: '+ '; }
-      .poem-details[open] summary { margin-bottom: 14px; }
-      .poem-details[open] summary strong::before { content: '- '; }
-      blockquote { margin: 0; border-left: 0; padding-left: 0; }
-      blockquote p { margin: 0 0 14px; color: var(--fg); }
-      cite { color: var(--muted); font-style: normal; }
-      .contact-list { display: flex; flex-direction: column; gap: 4px; font-size: 0.82rem; }
-      .contact-list p { display: grid; grid-template-columns: 80px minmax(0, 1fr); margin: 0; }
-      .contact-list a { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; overflow-wrap: anywhere; }
-      .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 28px; padding: 0; list-style: none; }
-      .tag-list li { padding: 3px 8px; border-radius: 3px; background: var(--chip); color: var(--accent); font-size: 0.68rem; }
-      .card-footer { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; padding-top: 18px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.68rem; }
-      .card-footer i { display: inline-block; width: 0.7em; height: 0.7em; margin-right: 0.45em; border-radius: 50%; background: var(--accent); }
-      @media (max-width: 760px) {
-        .card-stage { align-items: flex-start; padding: 18px 12px; }
-        .card-body { padding: 28px 20px 30px; }
-        .profile-row, .career-line, .contact-list p, .card-footer { grid-template-columns: 1fr; gap: 4px; }
-        .career-log { gap: 16px; }
-        .card-footer { align-items: start; }
+      .poem-opening {
+        display: block;
+        font-size: 1.04rem;
+        line-height: 1.72;
+      }
+      .read-more {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        margin-top: 28px;
+        padding: 8px 14px;
+        border: var(--rule);
+        background: var(--yellow);
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .read-more::before { margin-right: 8px; content: "+"; font-size: 1.1rem; }
+      .poem-details[open] .read-more::before { content: "−"; }
+      .poem-details[open] .read-more { margin-bottom: 34px; }
+      blockquote { margin: 0; padding-top: 34px; border-top: var(--rule); }
+      blockquote p { margin: 0 0 20px; font-size: 1.04rem; line-height: 1.72; }
+      cite { display: block; margin-top: 28px; font-family: var(--mono); font-size: 0.75rem; font-style: normal; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+      .contact-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.65fr);
+      }
+      .contact-copy {
+        padding: clamp(56px, 8vw, 100px) clamp(34px, 7vw, 84px);
+      }
+      .contact-copy h2 {
+        max-width: 720px;
+        margin: 24px 0 40px;
+        font-family: var(--mono);
+        font-size: clamp(2.7rem, 5.7vw, 5.3rem);
+        font-weight: 700;
+        letter-spacing: -0.08em;
+        line-height: 0.96;
+      }
+      .contact-copy > p:last-child {
+        max-width: 560px;
+        margin: 0;
+        color: var(--muted);
+        font-family: var(--sans);
+        font-size: 1.35rem;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+        padding: 36px;
+        border-left: var(--rule);
+        background: var(--blue);
+      }
+      .contact-links a {
+        display: flex;
+        min-height: 58px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 16px;
+        border: var(--rule);
+        background: var(--white);
+        font-family: var(--mono);
+        font-size: 0.84rem;
+        font-weight: 700;
+        overflow-wrap: anywhere;
+        text-decoration: none;
+      }
+      .contact-links a::after { content: "↗"; font-size: 1.25rem; }
+      .contact-links a:first-child { background: var(--yellow); }
+      .contact-links a:hover { transform: translate(-3px, -3px); box-shadow: 3px 3px 0 var(--ink); }
+
+      .site-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 24px 0;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .status { display: inline-flex; align-items: center; gap: 8px; }
+      .status::before {
+        width: 10px;
+        height: 10px;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: var(--red);
+        content: "";
+      }
+
+      @media (max-width: 900px) {
+        .masthead { grid-template-columns: auto 1fr; }
+        .masthead nav { grid-column: 1 / -1; justify-content: space-between; padding-bottom: 16px; border-top: 1px solid var(--ink); }
+        .hero,
+        .profile-section,
+        .experience-section,
+        .note-section,
+        .contact-section { grid-template-columns: 1fr; }
+        .hero-copy { min-height: auto; }
+        .hero-panel,
+        .contact-links,
+        .note-content { border-left: 0; border-top: var(--rule); }
+        .profile-copy { align-self: auto; }
+        .section-heading h2 { max-width: 760px; }
+        .note-heading h2 { max-width: 560px; }
+      }
+
+      @media (max-width: 640px) {
+        .site-shell { padding-inline: 16px; }
+        main { gap: 22px; padding-top: 8px; }
+        .surface-card { border-left-width: 6px; box-shadow: 5px 5px 0 rgba(23, 23, 23, 0.08); }
+        .masthead { min-height: 78px; gap: 16px; }
+        .issue { justify-self: end; text-align: right; }
+        .masthead nav { gap: 8px; overflow-x: auto; }
+        .masthead nav a { font-size: 0.67rem; }
+        h1 { margin-block: 40px 34px; font-size: clamp(3.6rem, 17vw, 5rem); }
+        .hero-copy { padding-block: 42px; }
+        .hero-panel { min-height: 540px; padding: 16px; }
+        .shape-stage { min-height: 230px; }
+        .profile-section,
+        .experience-section { gap: 42px; padding-block: 64px; }
+        .career-item { grid-template-columns: 1fr; }
+        .career-item { gap: 12px; }
+        .note-heading,
+        .note-content { padding: 44px 24px; }
+        .contact-copy { padding-block: 64px; }
+        .contact-links { padding: 24px 16px; }
+        .site-footer { align-items: flex-start; flex-direction: column; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: 0.01ms !important; }
+        .surface-card:hover,
+        .surface-card:focus-within { transform: none; }
       }
     </style>
   </head>
   <body>
-    <main class="card-stage">
-      <section class="index-card" aria-labelledby="site-title">
-        <header class="card-chrome">
-          <div class="traffic" aria-hidden="true"><span></span><span></span><span></span></div>
-          <p>~/jaehongoh - index.card</p>
-          <span>80x40</span>
-        </header>
-        <div class="card-body">
-          <div class="ascii-lockup">
-            <h1 id="site-title" class="sr-only">Jae-hong Oh</h1>
-            <svg class="wordmark" viewBox="0 0 282 42" role="img" aria-label="Jae-hong Oh" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip-jaehong-oh)">
-                <path class="cut" d="M0 18H6V24H0V18ZM6 18H12V24H6V18ZM18 18H24V24H18V18ZM6 24H12V30H6V24ZM18 24H24V30H18V24ZM18 30H24V36H18V30ZM36 24H42V30H36V24ZM42 24H48V30H42V24ZM36 30H42V36H36V30ZM42 30H48V36H42V30ZM78 18H84V24H78V18ZM66 24H72V30H66V24ZM72 24H78V30H72V24ZM78 24H84V30H78V24ZM96 24H102V30H96V24ZM102 24H108V30H102V24ZM96 30H102V36H96V30ZM102 30H108V36H102V30ZM126 18H132V24H126V18ZM132 18H138V24H132V18ZM126 24H132V30H126V24ZM132 24H138V30H132V24ZM156 18H162V24H156V18ZM156 24H162V30H156V24ZM162 24H168V30H162V24ZM156 30H162V36H156V30ZM162 30H168V36H162V30ZM186 18H192V24H186V18ZM186 24H192V30H186V24ZM192 24H198V30H192V24ZM234 18H240V24H234V18ZM240 18H246V24H240V18ZM234 24H240V30H234V24ZM240 24H246V30H240V24ZM264 24H270V30H264V24ZM270 24H276V30H270V24ZM264 30H270V36H264V30ZM270 30H276V36H270V30Z"/>
-                <path class="name-fill" d="M0 6H6V12H0V6ZM6 6H12V12H6V6ZM12 6H18V12H12V6ZM18 6H24V12H18V6ZM12 12H18V18H12V12ZM12 18H18V24H12V18ZM0 24H6V30H0V24ZM12 24H18V30H12V24ZM0 30H6V36H0V30ZM6 30H12V36H6V30ZM12 30H18V36H12V30ZM36 6H42V12H36V6ZM42 6H48V12H42V6ZM30 12H36V18H30V12ZM48 12H54V18H48V12ZM30 18H36V24H30V18ZM36 18H42V24H36V18ZM42 18H48V24H42V18ZM48 18H54V24H48V18ZM30 24H36V30H30V24ZM48 24H54V30H48V24ZM30 30H36V36H30V30ZM48 30H54V36H48V30ZM60 6H66V12H60V6ZM66 6H72V12H66V6ZM72 6H78V12H72V6ZM78 6H84V12H78V6ZM60 12H66V18H60V12ZM60 18H66V24H60V18ZM66 18H72V24H66V18ZM72 18H78V24H72V18ZM60 24H66V30H60V24ZM60 30H66V36H60V30ZM66 30H72V36H66V30ZM72 30H78V36H72V30ZM78 30H84V36H78V30ZM90 6H96V12H90V6ZM108 6H114V12H108V6ZM90 12H96V18H90V12ZM108 12H114V18H108V12ZM90 18H96V24H90V18ZM96 18H102V24H96V18ZM102 18H108V24H102V18ZM108 18H114V24H108V18ZM90 24H96V30H90V24ZM108 24H114V30H108V24ZM90 30H96V36H90V30ZM108 30H114V36H108V30ZM120 6H126V12H120V6ZM126 6H132V12H126V6ZM132 6H138V12H132V6ZM138 6H144V12H138V6ZM120 12H126V18H120V12ZM138 12H144V18H138V12ZM120 18H126V24H120V18ZM138 18H144V24H138V18ZM120 24H126V30H120V24ZM138 24H144V30H138V24ZM120 30H126V36H120V30ZM126 30H132V36H126V30ZM132 30H138V36H132V30ZM138 30H144V36H138V30ZM150 6H156V12H150V6ZM168 6H174V12H168V6ZM150 12H156V18H150V12ZM156 12H162V18H156V12ZM168 12H174V18H168V12ZM150 18H156V24H150V18ZM162 18H168V24H162V18ZM168 18H174V24H168V18ZM150 24H156V30H150V24ZM168 24H174V30H168V24ZM150 30H156V36H150V30ZM168 30H174V36H168V30ZM180 6H186V12H180V6ZM186 6H192V12H186V6ZM192 6H198V12H192V6ZM198 6H204V12H198V6ZM180 12H186V18H180V12ZM180 18H186V24H180V18ZM192 18H198V24H192V18ZM198 18H204V24H198V18ZM180 24H186V30H180V24ZM198 24H204V30H198V24ZM180 30H186V36H180V30ZM186 30H192V36H186V30ZM192 30H198V36H192V30ZM198 30H204V36H198V30Z"/>
-                <path class="surname-fill" d="M228 6H234V12H228V6ZM234 6H240V12H234V6ZM240 6H246V12H240V6ZM246 6H252V12H246V6ZM228 12H234V18H228V12ZM246 12H252V18H246V12ZM228 18H234V24H228V18ZM246 18H252V24H246V18ZM228 24H234V30H228V24ZM246 24H252V30H246V24ZM228 30H234V36H228V30ZM234 30H240V36H234V30ZM240 30H246V36H240V30ZM246 30H252V36H246V30ZM258 6H264V12H258V6ZM276 6H282V12H276V6ZM258 12H264V18H258V12ZM276 12H282V18H276V12ZM258 18H264V24H258V18ZM264 18H270V24H264V18ZM270 18H276V24H270V18ZM276 18H282V24H276V18ZM258 24H264V30H258V24ZM276 24H282V30H276V24ZM258 30H264V36H258V30ZM276 30H282V36H276V30Z"/>
-              </g>
-              <defs><clipPath id="clip-jaehong-oh"><rect width="282" height="42" fill="white"/></clipPath></defs>
-            </svg>
-            <p>indexed <strong>2026.05</strong> / jaehongoh.com</p>
+    <a class="skip-link" href="#profile">Skip to content</a>
+    <div class="site-shell">
+      <header class="masthead">
+        <a class="brand" href="/" aria-label="Jae-hong Oh home">JO</a>
+        <p class="issue">Personal index<br />Seoul · 2026</p>
+        <nav aria-label="Main navigation">
+          <a href="#profile">Profile</a>
+          <a href="#experience">Experience</a>
+          <a href="#note">Note</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero surface-card" id="profile" aria-labelledby="site-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Software architect · Vision SW engineer</p>
+            <h1 id="site-title"><span>Jae-hong</span><strong>Oh.</strong></h1>
+            <p class="hero-intro">Robust architectures and calm interfaces for complicated software.</p>
           </div>
-          <div class="profile-table" aria-label="Profile">
-            <p class="profile-row"><span>name</span><strong>Jae-hong Oh (오재홍)</strong></p>
-            <p class="profile-row"><span>role</span><strong>Software Architect / Vision SW Engineer</strong></p>
-            <p class="profile-row"><span>based</span><strong>Seoul, Republic of Korea</strong></p>
-            <p class="profile-row"><span>working_on</span><strong>Robust architectures and calm interfaces for complicated software.</strong></p>
-            <p class="profile-row"><span>signal</span><strong class="accent">email works best</strong></p>
-          </div>
-          <section class="log-section" aria-labelledby="career-title">
-            <h2 id="career-title">$ tac ./career.log</h2>
-            <div class="career-log">
-              <p class="career-line muted"><span>+ edu/</span><time>2026</time><strong>Carnegie Mellon - Software Architect Course.</strong></p>
-              <article class="career-line">
-                <span>ch.03 platform/</span><time>2021-2026</time>
-                <p><strong>CTO Software</strong> SoC software for automotive and robotics, ROS2/DDS, SoC-optimized AE/AWB, and camera test automation.</p>
-              </article>
-              <article class="career-line">
-                <span>ch.02 mobile-awb/</span><time>2016-2020</time>
-                <p><strong>LG Mobile / Camera Solution</strong> LG-AWB algorithm design and porting across flagship and mid/low-tier generations. LG-3A GUI Tuning Simulator development.</p>
-              </article>
-              <article class="career-line">
-                <span>ch.01 isp-3a/</span><time>2013-2015</time>
-                <p><strong>LG Mobile / ISP and 3A Algorithm</strong> Camera ISP and 3A tuning across device generations. Manual AE/AWB development, chipset ISP verification, and image-quality tooling.</p>
-              </article>
-              <p class="career-line muted"><span>+ joined/</span><time>2013</time><strong>LG Electronics - entered the company.</strong></p>
+          <aside class="hero-panel" aria-label="Profile summary">
+            <div class="shape-stage" aria-hidden="true">
+              <span class="shape shape-circle"></span>
+              <span class="shape shape-arch"></span>
+              <span class="shape shape-square"></span>
             </div>
-          </section>
-          <section class="log-section" aria-labelledby="notes-title">
-            <h2 id="notes-title">$ cat ./note-i-live-by.md</h2>
+            <div class="panel-copy">
+              <p class="panel-kicker">Profile No. 01</p>
+              <p class="panel-role">Systems, vision and edge software.</p>
+              <dl class="quick-facts">
+                <dt>Name</dt><dd>Jae-hong Oh · 오재홍</dd>
+                <dt>Based</dt><dd>Seoul, Republic of Korea</dd>
+                <dt>Signal</dt><dd>Email works best</dd>
+              </dl>
+            </div>
+          </aside>
+        </section>
+
+        <section class="profile-section editorial-section surface-card" aria-labelledby="profile-title">
+          <div class="section-heading">
+            <p class="section-label"><span>01</span> Profile</p>
+            <h2 id="profile-title">Quiet systems.<br />Clear decisions.</h2>
+          </div>
+          <div class="profile-copy">
+            <p class="lede">I work where camera systems, embedded Linux and SoC platforms meet - turning low-level complexity into software that people can trust.</p>
+            <p class="supporting">My work spans image-signal processing, camera 3A, robotics, edge systems and software architecture. I care about rigorous engineering, useful tools and interfaces that stay calm under pressure.</p>
+            <ul class="topic-list" aria-label="Areas of expertise">
+              <li>Camera ISP</li>
+              <li>3A algorithms</li>
+              <li>AWB</li>
+              <li>SoC software</li>
+              <li>ROS 2</li>
+              <li>Architecture</li>
+              <li>C / C++</li>
+              <li>Embedded Linux</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="experience-section editorial-section surface-card" id="experience" aria-labelledby="experience-title">
+          <div class="section-heading">
+            <p class="section-label"><span>02</span> Experience</p>
+            <h2 id="experience-title">A career in cameras, systems &amp; software.</h2>
+          </div>
+          <div class="career-wrap">
+            <div class="career-list">
+              <article class="career-item">
+                <div class="career-meta"><time>2026</time><span>Education</span></div>
+                <div>
+                  <h3>Carnegie Mellon Univ.</h3>
+                  <p>Software Architect Course.</p>
+                </div>
+              </article>
+              <article class="career-item">
+                <div class="career-meta"><time>2021-2026</time><span>Platform</span></div>
+                <div>
+                  <h3>CTO Software</h3>
+                  <p>SoC software for automotive and robotics, ROS 2/DDS, SoC-optimized AE/AWB, and camera test automation.</p>
+                </div>
+              </article>
+              <article class="career-item">
+                <div class="career-meta"><time>2016-2020</time><span>Mobile AWB</span></div>
+                <div>
+                  <h3>LG Mobile / Camera Solution</h3>
+                  <p>LG-AWB algorithm design and porting across flagship and mid/low-tier generations. LG-3A GUI Tuning Simulator development.</p>
+                </div>
+              </article>
+              <article class="career-item">
+                <div class="career-meta"><time>2013-2015</time><span>ISP &amp; 3A</span></div>
+                <div>
+                  <h3>LG Mobile / ISP and 3A Algorithm</h3>
+                  <p>Camera ISP and 3A tuning across device generations. Manual AE/AWB development, chipset ISP verification, and image-quality tooling.</p>
+                </div>
+              </article>
+              <article class="career-item">
+                <div class="career-meta"><time>2013</time><span>Joined</span></div>
+                <div>
+                  <h3>LG Electronics</h3>
+                  <p>Entered the company.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="note-section surface-card" id="note" aria-labelledby="note-title">
+          <div class="note-heading">
+            <div>
+              <p class="section-label"><span>03</span> Words I keep</p>
+              <h2 id="note-title">Stay<br />young.</h2>
+            </div>
+            <p>A note on courage, wonder and keeping the receiver switched on.</p>
+          </div>
+          <div class="note-content">
             <details class="poem-details">
               <summary>
-                <span>Youth is not a time of life - it is a state of mind. It is not a matter of red cheeks, red lips and supple knees. It is a temper of the will; a quality of the imagination; a vigor of the emotions; it is a freshness of the deep springs of life.</span>
-                <strong>read full poem</strong>
+                <span class="poem-opening">Youth is not a time of life - it is a state of mind. It is a temper of the will; a quality of the imagination; a vigor of the emotions; it is a freshness of the deep springs of life.</span>
+                <span class="read-more">Read the full poem</span>
               </summary>
               <blockquote>
                 <p>Youth means a temperamental predominance of courage over timidity, of the appetite for adventure over a life of ease. This often exists in a man of fifty, more than in a boy of twenty. Nobody grows old by merely living a number of years; people grow old by deserting their ideals.</p>
-                <p>Years may wrinkle the skin, but to give up enthusiasm wrinkles the soul. Worry, doubt, self-distrust, fear and despair - these are the long, long years that bow the head and turn the growing spirit back to dust.</p>
+                <p>Years may wrinkle the skin, but to give up enthusiasm wrinkles the soul. Worry, doubt, self-distrust, fear and despair are the long, long years that bow the head and turn the growing spirit back to dust.</p>
                 <p>Whether seventy or sixteen, there is in every being's heart a love of wonder; the sweet amazement at the stars and starlike things and thoughts; the undaunted challenge of events, the unfailing childlike appetite for what comes next, and the joy in the game of life.</p>
                 <p>You are as young as your faith, as old as your doubt; as young as your self-confidence, as old as your fear, as young as your hope, as old as your despair.</p>
                 <p>In the central place of your heart there is a wireless station. So long as it receives messages of beauty, hope, cheer, grandeur, courage, and power from the earth, from men and from the Infinite - so long are you young.</p>
@@ -198,23 +752,26 @@
                 <cite>Samuel Ullman</cite>
               </blockquote>
             </details>
-          </section>
-          <section class="log-section" aria-labelledby="contact-title">
-            <h2 id="contact-title">$ cat ./contact</h2>
-            <div class="contact-list">
-              <p><span>email</span><a href="mailto:me@jaehongoh.com">me@jaehongoh.com</a></p>
-              <p><span>linkedin</span><a href="https://www.linkedin.com/in/jaehongoh" target="_blank" rel="noreferrer">linkedin.com/in/jaehongoh</a></p>
-            </div>
-          </section>
-          <ul class="tag-list" aria-label="Topics">
-            <li>#camera-isp</li><li>#3a-algorithms</li><li>#awb</li><li>#soc-software</li><li>#ros2</li><li>#architecture</li><li>#c-cpp</li><li>#seoul</li>
-          </ul>
-          <footer class="card-footer">
-            <span>jaehongoh.com</span>
-            <span><i aria-hidden="true"></i> online / updated 2026.05.01</span>
-          </footer>
-        </div>
-      </section>
-    </main>
+          </div>
+        </section>
+
+        <section class="contact-section surface-card" id="contact" aria-labelledby="contact-title">
+          <div class="contact-copy">
+            <p class="section-label"><span>04</span> Contact</p>
+            <h2 id="contact-title">Let’s make hard things feel clear.</h2>
+            <p>Email works best. You can also find my professional profile on LinkedIn.</p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:me@jaehongoh.com">me@jaehongoh.com</a>
+            <a href="https://www.linkedin.com/in/jaehongoh" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>jaehongoh.com · Seoul</span>
+        <span class="status">Online · Updated 2026.08.12</span>
+      </footer>
+    </div>
   </body>
 </html>
