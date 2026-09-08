@@ -141,7 +141,7 @@ h1 {
   position: relative;
   z-index: 1;
   margin: 53px 0 48px -0.055em;
-  font-size: clamp(100px, 12.2vw, 195px);
+  font-size: clamp(90px, 11vw, 176px);
   font-weight: 500;
   line-height: 0.85;
   letter-spacing: -0.085em;
@@ -288,7 +288,7 @@ cite { display: block; margin-top: 30px; font-style: normal; }
   .masthead nav { gap: 22px; }
   .hero { gap: 24px; padding-block: 44px 64px; }
   .eyebrow { max-width: 260px; font-size: 10px; }
-  h1 { margin-top: 42px; font-size: 12vw; }
+  h1 { margin-top: 42px; font-size: 10.8vw; }
   .hero-panel { padding-top: 14px; }
   .panel-role { font-size: 22px; }
   .quick-facts { grid-template-columns: 48px minmax(0, 1fr); gap: 7px 8px; font-size: 10px; }
@@ -310,7 +310,7 @@ cite { display: block; margin-top: 30px; font-style: normal; }
   .masthead nav a { min-height: 46px; }
   .hero { grid-template-columns: minmax(0, 1fr); gap: 30px; padding-block: 32px 52px; }
   .eyebrow { max-width: none; font-size: 10px; }
-  h1 { margin: 40px 0 32px -0.055em; font-size: clamp(64px, 21vw, 150px); line-height: 0.85; }
+  h1 { margin: 40px 0 32px -0.055em; font-size: clamp(58px, 19vw, 135px); line-height: 0.85; }
   h1 > strong { margin-top: 0.05em; }
   .hero-intro { max-width: 420px; padding-left: 0; font-size: 25px; }
   .hero-panel { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 24px; align-items: center; padding-top: 0; }
