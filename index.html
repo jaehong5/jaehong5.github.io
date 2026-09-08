@@ -11,7 +11,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="Jae-hong Oh (오재홍)" />
-    <meta name="theme-color" content="#fff8e8" />
+    <meta name="theme-color" content="#171a18" />
     <link rel="canonical" href="https://jaehongoh.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260502-2" />
     <link rel="icon" sizes="any" href="/favicon.ico?v=20260502-2" />
@@ -19,8 +19,8 @@
     <link rel="alternate" hreflang="en" href="https://jaehongoh.com/" />
     <link rel="alternate" hreflang="ko" href="https://jaehongoh.com/" />
     <link rel="alternate" hreflang="x-default" href="https://jaehongoh.com/" />
-    <link rel="preload" href="/assets/fonts/hack-bold.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/fonts/red-hat-text-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/ioskeley-mono-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/ioskeley-mono-medium.woff2" as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Jae-hong Oh" />
     <meta property="og:title" content="Jae-hong Oh (오재홍)" />
@@ -52,575 +52,7 @@
         "sameAs": ["https://www.linkedin.com/in/jaehongoh"]
       }
     </script>
-    <style>
-      @font-face {
-        font-family: "Hack Web";
-        src: url("/assets/fonts/hack-regular.woff2") format("woff2");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: "Hack Web";
-        src: url("/assets/fonts/hack-bold.woff2") format("woff2");
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: "Red Hat Text Web";
-        src: url("/assets/fonts/red-hat-text-latin.woff2") format("woff2");
-        font-weight: 300 700;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: "Noto Sans KR Web";
-        src: url("/assets/fonts/noto-sans-kr-jaehong.woff2") format("woff2");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-        unicode-range: U+C624, U+C7AC, U+D64D;
-      }
-      @font-face {
-        font-family: "Newsreader Web";
-        src: url("/assets/fonts/newsreader-latin.woff2") format("woff2");
-        font-weight: 200 800;
-        font-style: normal;
-        font-display: swap;
-      }
-      :root {
-        --paper: #fff8e8;
-        --white: #fffdf8;
-        --ink: #171717;
-        --muted: #666258;
-        --red: #ef5a47;
-        --yellow: #ffd447;
-        --blue: #4b83c3;
-        --pale-blue: #c9e0ef;
-        --rule: 2px solid var(--ink);
-        --card-border: 1px solid rgba(23, 23, 23, 0.72);
-        --card-shadow: 8px 8px 0 rgba(23, 23, 23, 0.08);
-        --card-hover-shadow: 12px 12px 0 rgba(239, 90, 71, 0.13);
-        --mono: "Hack Web", "Noto Sans KR Web", monospace;
-        --sans: "Red Hat Text Web", "Noto Sans KR Web", sans-serif;
-        color: var(--ink);
-        background: var(--paper);
-        font-family: var(--sans);
-        font-size: 16px;
-        font-synthesis: none;
-        line-height: 1.5;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      * { box-sizing: border-box; }
-      html { min-width: 320px; scroll-behavior: smooth; }
-      body { min-width: 320px; min-height: 100%; margin: 0; background: var(--paper); }
-      a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 4px; }
-      a:hover { text-decoration-style: wavy; }
-      a:focus-visible,
-      summary:focus-visible {
-        outline: 3px solid var(--blue);
-        outline-offset: 4px;
-      }
-      ::selection { color: var(--ink); background: var(--yellow); }
-
-      .skip-link {
-        position: fixed;
-        z-index: 20;
-        top: 12px;
-        left: 12px;
-        padding: 10px 14px;
-        border: var(--rule);
-        background: var(--yellow);
-        font-weight: 800;
-        transform: translateY(-160%);
-      }
-      .skip-link:focus { transform: translateY(0); }
-
-      .site-shell {
-        width: min(1240px, 100%);
-        margin: 0 auto;
-        padding: 0 clamp(20px, 5vw, 72px) clamp(28px, 5vw, 64px);
-      }
-
-      .masthead {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 28px;
-        min-height: 92px;
-      }
-      .brand {
-        display: inline-flex;
-        min-width: 48px;
-        min-height: 48px;
-        align-items: center;
-        justify-content: center;
-        border: var(--rule);
-        background: var(--red);
-        font-family: var(--mono);
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: -0.08em;
-        text-decoration: none;
-      }
-      .issue {
-        margin: 0;
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        line-height: 1.4;
-        text-transform: uppercase;
-      }
-      .masthead nav { display: flex; gap: 20px; }
-      .masthead nav a {
-        display: inline-flex;
-        min-height: 44px;
-        align-items: center;
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-decoration: none;
-        text-transform: uppercase;
-      }
-      .masthead nav a:hover { text-decoration: underline; }
-
-      main {
-        display: grid;
-        gap: clamp(28px, 4.5vw, 54px);
-        padding: clamp(18px, 3vw, 36px) 0 clamp(28px, 4vw, 52px);
-      }
-      .surface-card {
-        --card-accent: var(--red);
-        overflow: hidden;
-        border: var(--card-border);
-        border-left: 8px solid var(--card-accent);
-        background: rgba(248, 245, 239, 0.9);
-        box-shadow: var(--card-shadow);
-        transform: translate(0, 0);
-        transition:
-          border-color 0.25s ease,
-          box-shadow 0.25s ease,
-          transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .surface-card:hover {
-        border-color: var(--ink);
-        border-left-color: var(--card-accent);
-        box-shadow: var(--card-hover-shadow);
-        transform: translate(-4px, -4px);
-      }
-      .surface-card:focus-within {
-        border-color: var(--ink);
-        border-left-color: var(--card-accent);
-        box-shadow: var(--card-hover-shadow);
-        transform: translate(-4px, -4px);
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.65fr);
-      }
-      .hero-copy {
-        display: flex;
-        min-height: 600px;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: clamp(44px, 7vw, 88px) clamp(24px, 5vw, 68px) clamp(42px, 6vw, 72px);
-      }
-      .eyebrow,
-      .section-label {
-        margin: 0;
-        font-family: var(--mono);
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-      .eyebrow { display: flex; align-items: center; gap: 10px; }
-      .eyebrow::before {
-        width: 12px;
-        height: 12px;
-        border: 2px solid var(--ink);
-        border-radius: 50%;
-        background: var(--blue);
-        content: "";
-      }
-      h1 {
-        margin: 52px 0 42px;
-        font-family: var(--mono);
-        font-size: clamp(4.8rem, 10vw, 8.4rem);
-        font-weight: 700;
-        letter-spacing: -0.08em;
-        line-height: 0.84;
-      }
-      h1 span,
-      h1 strong { display: block; }
-      h1 span { white-space: nowrap; }
-      h1 strong { color: var(--red); font-weight: inherit; }
-      .hero-intro {
-        max-width: 690px;
-        margin: 0;
-        font-family: var(--sans);
-        font-size: clamp(1.45rem, 2.8vw, 2.25rem);
-        letter-spacing: -0.025em;
-        line-height: 1.18;
-      }
-
-      .hero-panel {
-        display: flex;
-        min-height: 600px;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 24px;
-        border-left: var(--rule);
-        background: var(--yellow);
-      }
-      .shape-stage {
-        position: relative;
-        min-height: 250px;
-        overflow: hidden;
-        border: var(--rule);
-        background: var(--white);
-      }
-      .shape { position: absolute; display: block; border: var(--rule); }
-      .shape-circle {
-        top: 28px;
-        right: 28px;
-        width: 104px;
-        height: 104px;
-        border-radius: 50%;
-        background: var(--red);
-      }
-      .shape-arch {
-        bottom: -2px;
-        left: 30px;
-        width: 104px;
-        height: 156px;
-        border-radius: 54px 54px 0 0;
-        background: var(--blue);
-      }
-      .shape-square {
-        right: 50px;
-        bottom: 28px;
-        width: 70px;
-        height: 70px;
-        background: var(--yellow);
-        transform: rotate(8deg);
-      }
-      .panel-copy { padding-top: 32px; }
-      .panel-kicker {
-        margin: 0 0 10px;
-        font-family: var(--mono);
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-      .panel-role {
-        margin: 0;
-        font-family: var(--mono);
-        font-size: clamp(1.35rem, 2.5vw, 2rem);
-        font-weight: 700;
-        letter-spacing: -0.055em;
-        line-height: 1.08;
-      }
-      .quick-facts {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 7px 14px;
-        margin: 28px 0 0;
-        padding-top: 18px;
-        border-top: var(--rule);
-        font-family: var(--mono);
-        font-size: 0.72rem;
-      }
-      .quick-facts dt { font-weight: 700; text-transform: uppercase; }
-      .quick-facts dd { margin: 0; }
-
-      .profile-section,
-      .experience-section {
-        display: grid;
-        grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
-        gap: clamp(38px, 7vw, 96px);
-        padding: clamp(64px, 9vw, 112px) clamp(28px, 6vw, 76px);
-      }
-      .section-heading h2 {
-        max-width: 520px;
-        margin: 18px 0 0;
-        font-family: var(--mono);
-        font-size: clamp(2.25rem, 4.8vw, 4.4rem);
-        font-weight: 700;
-        letter-spacing: -0.07em;
-        line-height: 0.98;
-      }
-      .section-label span {
-        display: inline-flex;
-        width: 32px;
-        height: 32px;
-        align-items: center;
-        justify-content: center;
-        margin-right: 10px;
-        border: var(--rule);
-        border-radius: 50%;
-        background: var(--yellow);
-        letter-spacing: 0;
-      }
-      .profile-copy { align-self: end; }
-      .profile-copy .lede {
-        margin: 0;
-        font-family: var(--sans);
-        font-size: clamp(1.5rem, 3vw, 2.35rem);
-        line-height: 1.24;
-      }
-      .profile-copy .supporting {
-        max-width: 650px;
-        margin: 30px 0 0;
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.75;
-      }
-      .topic-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 34px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-      .topic-list li {
-        padding: 8px 12px;
-        border: var(--rule);
-        background: var(--white);
-        font-family: var(--mono);
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-      }
-      .topic-list li:nth-child(3n + 1) { background: var(--pale-blue); }
-      .topic-list li:nth-child(3n + 2) { background: var(--yellow); }
-      .topic-list li:nth-child(3n + 3) { background: #ffd8ce; }
-
-      .experience-section { align-items: start; }
-      .career-wrap { min-width: 0; }
-      .career-list { border-top: var(--rule); }
-      .career-item {
-        display: grid;
-        grid-template-columns: 160px minmax(0, 1fr);
-        gap: 24px;
-        padding: 32px 0;
-        border-bottom: var(--rule);
-      }
-      .career-meta { display: flex; flex-direction: column; gap: 7px; }
-      .career-meta time {
-        color: var(--red);
-        font-family: var(--mono);
-        font-size: 1.25rem;
-        font-weight: 700;
-        letter-spacing: -0.03em;
-      }
-      .career-meta span {
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .career-item h3 {
-        margin: 0 0 10px;
-        font-family: var(--mono);
-        font-size: clamp(1.2rem, 2vw, 1.7rem);
-        font-weight: 700;
-        letter-spacing: -0.045em;
-        line-height: 1.14;
-      }
-      .career-item p { margin: 0; color: var(--muted); line-height: 1.68; }
-
-      .note-section {
-        display: grid;
-        grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
-        background: var(--red);
-      }
-      .note-heading,
-      .note-content { padding: clamp(42px, 7vw, 84px); }
-      .note-heading { display: flex; flex-direction: column; justify-content: space-between; }
-      .note-heading h2 {
-        margin: 28px 0 52px;
-        font-family: var(--mono);
-        font-size: clamp(2.8rem, 6vw, 5.5rem);
-        font-weight: 700;
-        letter-spacing: -0.08em;
-        line-height: 0.9;
-      }
-      .note-heading p:last-child {
-        max-width: 260px;
-        margin: 0;
-        font-size: 0.78rem;
-        font-weight: 800;
-        line-height: 1.5;
-        text-transform: uppercase;
-      }
-      .note-content { border-left: var(--rule); background: var(--white); }
-      .poem-opening,
-      .poem-details blockquote p {
-        font-family: "Newsreader Web", serif;
-        font-optical-sizing: auto;
-      }
-      .poem-details summary { cursor: pointer; list-style: none; }
-      .poem-details summary::-webkit-details-marker { display: none; }
-      .poem-opening {
-        display: block;
-        font-size: 1.04rem;
-        line-height: 1.72;
-      }
-      .read-more {
-        display: inline-flex;
-        min-height: 44px;
-        align-items: center;
-        margin-top: 28px;
-        padding: 8px 14px;
-        border: var(--rule);
-        background: var(--yellow);
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .read-more::before { margin-right: 8px; content: "+"; font-size: 1.1rem; }
-      .poem-details[open] .read-more::before { content: "−"; }
-      .poem-details[open] .read-more { margin-bottom: 34px; }
-      blockquote { margin: 0; padding-top: 34px; border-top: var(--rule); }
-      blockquote p { margin: 0 0 20px; font-size: 1.04rem; line-height: 1.72; }
-      cite { display: block; margin-top: 28px; font-family: var(--mono); font-size: 0.75rem; font-style: normal; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-
-      .contact-section {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.65fr);
-      }
-      .contact-copy {
-        padding: clamp(56px, 8vw, 100px) clamp(34px, 7vw, 84px);
-      }
-      .contact-copy h2 {
-        max-width: 720px;
-        margin: 24px 0 40px;
-        font-family: var(--mono);
-        font-size: clamp(2.7rem, 5.7vw, 5.3rem);
-        font-weight: 700;
-        letter-spacing: -0.08em;
-        line-height: 0.96;
-      }
-      .contact-copy > p:last-child {
-        max-width: 560px;
-        margin: 0;
-        color: var(--muted);
-        font-family: var(--sans);
-        font-size: 1.35rem;
-      }
-      .contact-links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 14px;
-        padding: 36px;
-        border-left: var(--rule);
-        background: var(--blue);
-      }
-      .contact-links a {
-        display: flex;
-        min-height: 58px;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 12px 16px;
-        border: var(--rule);
-        background: var(--white);
-        font-family: var(--mono);
-        font-size: 0.84rem;
-        font-weight: 700;
-        overflow-wrap: anywhere;
-        text-decoration: none;
-      }
-      .contact-links a::after { content: "↗"; font-size: 1.25rem; }
-      .contact-links a:first-child { background: var(--yellow); }
-      .contact-links a:hover { transform: translate(-3px, -3px); box-shadow: 3px 3px 0 var(--ink); }
-
-      .site-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 24px 0;
-        color: var(--muted);
-        font-family: var(--mono);
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .status { display: inline-flex; align-items: center; gap: 8px; }
-      .status::before {
-        width: 10px;
-        height: 10px;
-        border: 2px solid var(--ink);
-        border-radius: 50%;
-        background: var(--red);
-        content: "";
-      }
-
-      @media (max-width: 900px) {
-        .masthead { grid-template-columns: auto 1fr; }
-        .masthead nav { grid-column: 1 / -1; justify-content: space-between; padding-bottom: 16px; border-top: 1px solid var(--ink); }
-        .hero,
-        .profile-section,
-        .experience-section,
-        .note-section,
-        .contact-section { grid-template-columns: 1fr; }
-        .hero-copy { min-height: auto; }
-        .hero-panel,
-        .contact-links,
-        .note-content { border-left: 0; border-top: var(--rule); }
-        .profile-copy { align-self: auto; }
-        .section-heading h2 { max-width: 760px; }
-        .note-heading h2 { max-width: 560px; }
-      }
-
-      @media (max-width: 640px) {
-        .site-shell { padding-inline: 16px; }
-        main { gap: 22px; padding-top: 8px; }
-        .surface-card { border-left-width: 6px; box-shadow: 5px 5px 0 rgba(23, 23, 23, 0.08); }
-        .masthead { min-height: 78px; gap: 16px; }
-        .issue { justify-self: end; text-align: right; }
-        .masthead nav { gap: 8px; overflow-x: auto; }
-        .masthead nav a { font-size: 0.67rem; }
-        h1 { margin-block: 40px 34px; font-size: clamp(3.6rem, 17vw, 5rem); }
-        .hero-copy { padding-block: 42px; }
-        .hero-panel { min-height: 540px; padding: 16px; }
-        .shape-stage { min-height: 230px; }
-        .profile-section,
-        .experience-section { gap: 42px; padding-block: 64px; }
-        .career-item { grid-template-columns: 1fr; }
-        .career-item { gap: 12px; }
-        .note-heading,
-        .note-content { padding: 44px 24px; }
-        .contact-copy { padding-block: 64px; }
-        .contact-links { padding: 24px 16px; }
-        .site-footer { align-items: flex-start; flex-direction: column; }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-        *, *::before, *::after { transition-duration: 0.01ms !important; }
-        .surface-card:hover,
-        .surface-card:focus-within { transform: none; }
-      }
-    </style>
+    <link rel="stylesheet" href="/assets/site.css" />
   </head>
   <body>
     <a class="skip-link" href="#profile">Skip to content</a>
@@ -637,17 +69,15 @@
       </header>
 
       <main>
-        <section class="hero surface-card" id="profile" aria-labelledby="site-title">
+        <section class="hero" id="profile" aria-labelledby="site-title">
           <div class="hero-copy">
             <p class="eyebrow">Software architect · Vision SW engineer</p>
-            <h1 id="site-title"><span>Jae-hong</span><strong>Oh.</strong></h1>
+            <h1 id="site-title"><span>Jae-hong</span><strong>Oh<span class="name-period">.</span></strong></h1>
             <p class="hero-intro">Robust architectures and calm interfaces for complicated software.</p>
           </div>
           <aside class="hero-panel" aria-label="Profile summary">
-            <div class="shape-stage" aria-hidden="true">
-              <span class="shape shape-circle"></span>
-              <span class="shape shape-arch"></span>
-              <span class="shape shape-square"></span>
+            <div class="diagram-stage" aria-hidden="true">
+              <img class="architecture-diagram" src="/assets/architecture-diagram.svg" width="640" height="640" alt="" fetchpriority="high" />
             </div>
             <div class="panel-copy">
               <p class="panel-kicker">Profile No. 01</p>
@@ -661,7 +91,7 @@
           </aside>
         </section>
 
-        <section class="profile-section editorial-section surface-card" aria-labelledby="profile-title">
+        <section class="profile-section editorial-section" aria-labelledby="profile-title">
           <div class="section-heading">
             <p class="section-label"><span>01</span> Profile</p>
             <h2 id="profile-title">Quiet systems.<br />Clear decisions.</h2>
@@ -682,7 +112,7 @@
           </div>
         </section>
 
-        <section class="experience-section editorial-section surface-card" id="experience" aria-labelledby="experience-title">
+        <section class="experience-section editorial-section" id="experience" aria-labelledby="experience-title">
           <div class="section-heading">
             <p class="section-label"><span>02</span> Experience</p>
             <h2 id="experience-title">A career in cameras, systems &amp; software.</h2>
@@ -728,7 +158,7 @@
           </div>
         </section>
 
-        <section class="note-section surface-card" id="note" aria-labelledby="note-title">
+        <section class="note-section" id="note" aria-labelledby="note-title">
           <div class="note-heading">
             <div>
               <p class="section-label"><span>03</span> Words I keep</p>
@@ -755,7 +185,7 @@
           </div>
         </section>
 
-        <section class="contact-section surface-card" id="contact" aria-labelledby="contact-title">
+        <section class="contact-section" id="contact" aria-labelledby="contact-title">
           <div class="contact-copy">
             <p class="section-label"><span>04</span> Contact</p>
             <h2 id="contact-title">Let’s make hard things feel clear.</h2>
@@ -764,6 +194,7 @@
           <div class="contact-links">
             <a href="mailto:me@jaehongoh.com">me@jaehongoh.com</a>
             <a href="https://www.linkedin.com/in/jaehongoh" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/jaehong5" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </section>
       </main>
